@@ -5,7 +5,7 @@ var keymap : OrderedSet
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	Global.Root = self
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -25,7 +25,7 @@ func _on_timing_pressed():
 
 
 func _on_file_dialog_file_selected(path):
-	var music = AudioStreamPlayer.new()
+	var music = $EditorBar/AudioStreamPlayer
 	var stream = load(path)
 	music.set_stream(stream)
 	music.volume_db = 1

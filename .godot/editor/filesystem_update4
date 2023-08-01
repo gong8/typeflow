@@ -1,7 +1,6 @@
 res://scenes/menu.tscn
-res://scripts/global.gd
-res://scripts/menu.gd
 res://scenes/game.tscn
 res://scenes/editor.tscn
-res://scripts/ordered_set.gd
+res://scripts/editor/editor.gd
+res://scenes/timing_menu.tscn
 res://scripts/game.gd

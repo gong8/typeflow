@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://br1sjlvw3hv1u"]
+
+[node name="TimingMenu" type="Node2D"]
+metadata/_edit_horizontal_guides_ = [1612.0]
+
+[node name="BG" type="Polygon2D" parent="."]
+scale = Vector2(0.95, 0.95)
+polygon = PackedVector2Array(-960, -540, 960, -540, 960, 540, -960, 540)
+metadata/_edit_lock_ = true

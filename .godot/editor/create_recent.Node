@@ -1,6 +1,10 @@
-Polygon2D
 Button
+Polygon2D
+HSlider
+CheckButton
 Sprite2D
+AudioStreamPlayer2D
+FileDialog
 Node2D
 CanvasGroup
 Camera2D

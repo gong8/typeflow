@@ -1,9 +1,13 @@
-[gd_scene format=3 uid="uid://br1sjlvw3hv1u"]
+[gd_scene load_steps=2 format=3 uid="uid://dsd0c1sgb5k4p"]
+
+[ext_resource type="PackedScene" uid="uid://f2jlp81ci5st" path="res://scenes/timeline.tscn" id="1_dgosv"]
 
 [node name="TimingMenu" type="Node2D"]
 metadata/_edit_horizontal_guides_ = [1612.0]
 
 [node name="BG" type="Polygon2D" parent="."]
 scale = Vector2(0.95, 0.95)
-polygon = PackedVector2Array(-960, -540, 960, -540, 960, 540, -960, 540)
+polygon = PackedVector2Array(-880, -460, 880, -460, 880, 460, -880, 460)
 metadata/_edit_lock_ = true
+
+[node name="Timeline" parent="." instance=ExtResource("1_dgosv")]

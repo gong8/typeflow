@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bfho2xrynpvm2"
+path="res://.godot/imported/snap out of it.mp3-cb8a6389f1f8ed7689c5ccddfe56c646.mp3str"
+
+[deps]
+
+source_file="res://songs/snap out of it.mp3"
+dest_files=["res://.godot/imported/snap out of it.mp3-cb8a6389f1f8ed7689c5ccddfe56c646.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

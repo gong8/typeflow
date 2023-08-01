@@ -1,6 +1,12 @@
 res://scenes/menu.tscn
+res://scripts/game.gd
 res://scenes/game.tscn
 res://scenes/editor.tscn
 res://scripts/editor/editor.gd
+res://scripts/editor/file_dialog.gd
 res://scenes/timing_menu.tscn
-res://scripts/game.gd
+res://scenes/timeline.tscn
+res://scripts/timeline.gd
+res://scripts/editor/timeline.gd
+res://scenes/toothpick.tscn
+res://scenes/toothpick.gd

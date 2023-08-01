@@ -1,7 +1,4 @@
 res://scenes/menu.tscn
-res://scripts/global.gd
-res://scripts/menu.gd
+res://scripts/game.gd
 res://scenes/game.tscn
 res://scenes/editor.tscn
-res://scripts/ordered_set.gd
-res://scripts/game.gd

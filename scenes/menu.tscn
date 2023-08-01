@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmbmht8til6ll"]
+
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_yucu5"]
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_yucu5")
+
+[node name="GameButton" type="Button" parent="."]
+offset_left = 626.0
+offset_top = 196.0
+offset_right = 1363.0
+offset_bottom = 501.0
+text = "GAME PLAY"
+
+[node name="EditButton" type="Button" parent="."]
+offset_left = 756.0
+offset_top = 559.0
+offset_right = 1279.0
+offset_bottom = 934.0
+text = "EDIT GAME"
+
+[connection signal="pressed" from="GameButton" to="." method="_on_game_button_pressed"]
+[connection signal="pressed" from="EditButton" to="." method="_on_edit_button_pressed"]

@@ -1,11 +1,11 @@
 [gd_scene load_steps=2 format=3 uid="uid://bv3t45bhhl76i"]
 
-[ext_resource type="Script" path="res://scenes/toothpick.gd" id="1_y3prs"]
+[ext_resource type="Script" path="res://scripts/editor/toothpick.gd" id="1_n6533"]
 
 [node name="Toothpick" type="Node2D"]
 position = Vector2(1, -39)
 scale = Vector2(4, 4)
-script = ExtResource("1_y3prs")
+script = ExtResource("1_n6533")
 metadata/_edit_group_ = true
 
 [node name="Polygon2D" type="Polygon2D" parent="."]

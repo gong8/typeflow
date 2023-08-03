@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://do0xcm3kwrios"]
+[gd_scene load_steps=5 format=3 uid="uid://do0xcm3kwrios"]
 
 [ext_resource type="Script" path="res://scripts/editor/editor.gd" id="1_jck3k"]
+[ext_resource type="PackedScene" uid="uid://f2jlp81ci5st" path="res://scenes/timeline.tscn" id="2_etr53"]
 [ext_resource type="Script" path="res://scripts/editor/file_dialog.gd" id="2_n5txh"]
+[ext_resource type="Script" path="res://scripts/editor/grid.gd" id="3_b6nkg"]
 
 [node name="Editor" type="Node2D"]
 script = ExtResource("1_jck3k")
@@ -9,6 +11,9 @@ script = ExtResource("1_jck3k")
 [node name="Timeline" type="Polygon2D" parent="."]
 polygon = PackedVector2Array(0, 1000, 0, 1080, 1920, 1080, 1920, 1000)
 metadata/_edit_lock_ = true
+
+[node name="Timeline" parent="Timeline" instance=ExtResource("2_etr53")]
+position = Vector2(2.08165e-12, 1000)
 
 [node name="EditorBar" type="Polygon2D" parent="."]
 position = Vector2(0, -1000)
@@ -36,6 +41,23 @@ script = ExtResource("2_n5txh")
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="EditorBar"]
 volume_db = 24.0
 
+[node name="GridButton" type="Button" parent="EditorBar"]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="GridTimeToggle" type="Button" parent="EditorBar"]
+offset_left = 1840.0
+offset_top = 1000.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+text = "1/1"
+
+[node name="Grid" type="Node2D" parent="."]
+position = Vector2(2.08165e-12, 80)
+script = ExtResource("3_b6nkg")
+
 [connection signal="pressed" from="EditorBar/Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="EditorBar/Timing" to="." method="_on_timing_pressed"]
 [connection signal="file_selected" from="EditorBar/FileDialog" to="." method="_on_file_dialog_file_selected"]
+[connection signal="pressed" from="EditorBar/GridButton" to="." method="_on_grid_button_pressed"]
+[connection signal="pressed" from="EditorBar/GridTimeToggle" to="." method="_on_grid_time_toggle_pressed"]

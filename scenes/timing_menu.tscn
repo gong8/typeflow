@@ -1,8 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://dsd0c1sgb5k4p"]
+[gd_scene load_steps=3 format=3 uid="uid://dsd0c1sgb5k4p"]
 
-[ext_resource type="PackedScene" uid="uid://f2jlp81ci5st" path="res://scenes/timeline.tscn" id="1_dgosv"]
+[ext_resource type="PackedScene" uid="uid://dcki3xl5ed715" path="res://scenes/timingtimeline.tscn" id="1_248kr"]
+
+[sub_resource type="GDScript" id="GDScript_r0e7i"]
+script/source = "extends Node2D
+
+
+func _on_close_pressed():
+	Global.screen = \"editor\"
+	queue_free()
+"
 
 [node name="TimingMenu" type="Node2D"]
+script = SubResource("GDScript_r0e7i")
 metadata/_edit_horizontal_guides_ = [1612.0]
 
 [node name="BG" type="Polygon2D" parent="."]
@@ -10,4 +20,14 @@ scale = Vector2(0.95, 0.95)
 polygon = PackedVector2Array(-880, -460, 880, -460, 880, 460, -880, 460)
 metadata/_edit_lock_ = true
 
-[node name="Timeline" parent="." instance=ExtResource("1_dgosv")]
+[node name="Close" type="Button" parent="."]
+offset_left = -825.0
+offset_top = -430.0
+offset_right = -611.0
+offset_bottom = -310.0
+text = "CLOSE
+"
+
+[node name="TimingTimeline" parent="." instance=ExtResource("1_248kr")]
+
+[connection signal="pressed" from="Close" to="." method="_on_close_pressed"]

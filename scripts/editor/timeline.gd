@@ -5,7 +5,7 @@ var song_length: float
 var current_time: float
 
 func _ready():
-	song = Global.Root.get_node("EditorBar/AudioStreamPlayer")
+	song = get_tree().get_first_node_in_group("songs")
 	print(song)
 	song_length = song.stream.get_length()
 	print(song_length)
@@ -43,3 +43,5 @@ func _on_add_toothpick_pressed():
 	add_child(toothpick_inst)
 	toothpick_inst.max_value = $HSlider.max_value
 	toothpick_inst.set_value($HSlider.value)
+	
+	

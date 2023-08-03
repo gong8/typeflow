@@ -1,6 +1,6 @@
 extends Node
 
-var Root
+var root
 
 func _ready():
 	pass

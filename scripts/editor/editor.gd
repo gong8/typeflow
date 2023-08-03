@@ -2,6 +2,7 @@ extends Node2D
 
 var keymap : OrderedSet
 var grid_showing: bool = true
+var bpm_manager = BpmManager.new()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -9,15 +10,13 @@ func _process(delta):
 
 
 func _on_back_pressed():
+	Global.screen = "main_menu"
 	get_tree().change_scene_to_file("res://scenes/menu.tscn")
 
 
 func _on_timing_pressed():
 	if Global.screen == "editor":
-		var inst = load("res://scenes/timing_menu.tscn").instantiate()
-#		inst.position = Vector2(1920/2, 1080/2)
-		inst.position = Vector2(160, 160)
-		add_child(inst)
+		$TimingMenu.visible = true
 		Global.screen = "timing"
 
 
@@ -53,3 +52,4 @@ func _on_grid_time_toggle_pressed():
 
 func _ready():
 	set_factor()
+	Global.root = self

@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dsd0c1sgb5k4p"]
+[gd_scene load_steps=3 format=3 uid="uid://dsd0c1sgb5k4p"]
 
 [ext_resource type="Script" path="res://scripts/editor/timing_timeline.gd" id="1_kn6hf"]
 [ext_resource type="Script" path="res://scripts/editor/timing_menu.gd" id="1_u0o15"]
-[ext_resource type="AudioStream" uid="uid://bfho2xrynpvm2" path="res://songs/snap out of it.mp3" id="3_atg3s"]
 
 [node name="TimingMenu" type="Node2D"]
 script = ExtResource("1_u0o15")
@@ -71,9 +70,7 @@ offset_right = 316.0
 offset_bottom = 607.0
 text = "delete pick"
 
-[node name="TimingMenuMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_atg3s")
-
+[connection signal="focus_entered" from="FocusCapturer" to="." method="_on_focus_capturer_focus_entered"]
 [connection signal="pressed" from="Close" to="." method="_on_close_pressed"]
 [connection signal="pressed" from="TogglePlay" to="." method="_on_toggle_play_pressed"]
 [connection signal="pressed" from="AddToothpick" to="." method="_on_add_toothpick_pressed"]
@@ -84,4 +81,5 @@ stream = ExtResource("3_atg3s")
 [connection signal="focus_exited" from="SelectedTPMenu/BPMEdit" to="." method="_on_bpm_edit_focus_exited"]
 [connection signal="text_changed" from="SelectedTPMenu/BPMEdit" to="." method="_on_bpm_edit_text_changed"]
 [connection signal="focus_exited" from="SelectedTPMenu/TrackEdit" to="." method="_on_track_edit_focus_exited"]
+[connection signal="text_changed" from="SelectedTPMenu/TrackEdit" to="." method="_on_track_edit_text_changed"]
 [connection signal="pressed" from="SelectedTPMenu/DeleteToothpick" to="." method="_on_delete_toothpick_pressed"]

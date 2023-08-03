@@ -5,4 +5,4 @@ var root
 func _ready():
 	pass
 
-var screen : String = "editor"
+var screen : String = "main_menu"

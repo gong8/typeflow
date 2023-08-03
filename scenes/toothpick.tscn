@@ -3,25 +3,23 @@
 [ext_resource type="Script" path="res://scripts/editor/toothpick.gd" id="1_n6533"]
 
 [node name="Toothpick" type="Node2D"]
-position = Vector2(1, -39)
-scale = Vector2(4, 4)
+scale = Vector2(1, 5)
 script = ExtResource("1_n6533")
 metadata/_edit_group_ = true
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 z_index = 200
-position = Vector2(2.08165e-12, 1)
-scale = Vector2(0.5, 2)
 color = Color(1, 0.470588, 0.517647, 1)
-polygon = PackedVector2Array(-1, 0, -1, 8, -5, 10, -5, 11, 4, 11, 4, 10, 0, 8, 0, 0)
+polygon = PackedVector2Array(-1, 2.08165e-12, -1, 8, -5, 10, -5, 11, 5, 11, 5, 10, 1, 8, 1, 2.08165e-12)
 
 [node name="Button" type="Button" parent="."]
 visibility_layer = 0
 texture_repeat = 1
-offset_left = -4.0
-offset_top = 15.0
-offset_right = 4.0
-offset_bottom = 23.0
+offset_left = -5.0
+offset_top = 7.0
+offset_right = 5.0
+offset_bottom = 27.0
+scale = Vector2(1, 0.2)
 
 [connection signal="button_down" from="Button" to="." method="_on_handle_down"]
 [connection signal="button_up" from="Button" to="." method="_on_handle_up"]

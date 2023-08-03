@@ -1,52 +1,34 @@
 extends Node2D
 
-var song: AudioStreamPlayer = null
-var song_length: float
-var current_time: float
+var background = Rect2(Vector2(0, 0), Vector2(1240, 40))
+var bar = Rect2(Vector2(20, 16), Vector2(1200, 8))
+var value = 0.0
+var max_value: float = 100.0
+var handle_x: float
+var dragging: bool = false
 
-func _ready():
-	song = get_tree().get_first_node_in_group("songs")
-	print(song)
-	song_length = song.stream.get_length()
-	print(song_length)
-	$HSlider.min_value = 0
-	$HSlider.max_value = song_length
-	$TogglePlay.text = "Play"
-	song.play()
-	song.set_stream_paused(true)
-	
+signal drag_started 
+signal drag_ended
 
-func _process(delta):
-	if song == null:
-		song = get_tree().get_first_node_in_group("songs")
-		
-	if song.is_playing():
-		$HSlider.value = song.get_playback_position()
+func _draw():
+	draw_rect(background, Color(0.2, 0.2, 0.2))
+	draw_rect(bar, Color(0, 0, 0))
+	handle_x = bar.position.x + bar.size.x * value / max_value
+	var handle_y = bar.position.y + bar.size.y / 2
+	draw_circle(Vector2(handle_x, handle_y), bar.size.y * 1.5, Color(1, 1, 1))
+	var top_y = handle_y - 16
+	var bottom_y = handle_y + 16
+	draw_line(Vector2(handle_x, top_y), Vector2(handle_x, bottom_y), Color(1, 0, 0), 2)
 
-
-
-func _on_drag_started():
-	song.set_stream_paused(true)
-
-
-func _on_drag_ended(value_changed):
-	song.play($HSlider.value)
-	$TogglePlay.text = "Pause"
-
-
-func _on_toggle_play_pressed():
-	if song.is_playing():
-		song.set_stream_paused(true)
-		$TogglePlay.text = "Play"
-	else:
-		song.set_stream_paused(false)
-		$TogglePlay.text = "Pause"
-
-
-func _on_add_toothpick_pressed():
-	var toothpick_inst = load("res://scenes/toothpick.tscn").instantiate()
-	add_child(toothpick_inst)
-	toothpick_inst.max_value = $HSlider.max_value
-	toothpick_inst.set_value($HSlider.value)
-	
-	
+func _process(_delta):
+	if Input.is_action_just_pressed("Click"):
+		if background.has_point(get_local_mouse_position()):
+			dragging = true
+			drag_started.emit()
+	if dragging and Input.is_action_just_released("Click"):
+		dragging = false
+		drag_ended.emit()
+	if dragging:
+		value = (get_local_mouse_position().x - bar.position.x) / bar.size.x * max_value
+		value = max(0, min(value, max_value))
+	queue_redraw()

@@ -16,21 +16,19 @@ metadata/_edit_lock_ = true
 position = Vector2(2.08165e-12, 1000)
 
 [node name="EditorBar" type="Polygon2D" parent="."]
-position = Vector2(0, -1000)
-polygon = PackedVector2Array(0, 1000, 0, 1080, 1920, 1080, 1920, 1000)
+position = Vector2(2.08165e-12, 2.08165e-12)
+polygon = PackedVector2Array(2.08165e-12, 2.08165e-12, 2.08165e-12, 80, 1920, 80, 1920, 2.08165e-12)
 metadata/_edit_lock_ = true
 
 [node name="Back" type="Button" parent="EditorBar"]
-offset_top = 1000.0
 offset_right = 80.0
-offset_bottom = 1080.0
+offset_bottom = 80.0
 text = "back"
 
 [node name="Timing" type="Button" parent="EditorBar"]
 offset_left = 80.0
-offset_top = 1000.0
 offset_right = 160.0
-offset_bottom = 1080.0
+offset_bottom = 80.0
 text = "timing"
 
 [node name="FileDialog" type="FileDialog" parent="EditorBar"]
@@ -42,14 +40,15 @@ script = ExtResource("2_n5txh")
 volume_db = 24.0
 
 [node name="GridButton" type="Button" parent="EditorBar"]
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 1840.0
+offset_right = 1920.0
+offset_bottom = 80.0
+text = "grid"
 
 [node name="GridTimeToggle" type="Button" parent="EditorBar"]
-offset_left = 1840.0
-offset_top = 1000.0
-offset_right = 1920.0
-offset_bottom = 1080.0
+offset_left = 1760.0
+offset_right = 1840.0
+offset_bottom = 80.0
 text = "1/1"
 
 [node name="Grid" type="Node2D" parent="."]

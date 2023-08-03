@@ -11,3 +11,6 @@ res://scripts/editor/timeline.gd
 res://scripts/ordered_set.gd
 res://scripts/editor/grid.gd
 res://scenes/timingtimeline.tscn
+res://scenes/timing_timeline.tscn
+res://scripts/editor/timing_timeline.gd
+res://scripts/editor/toothpick.gd

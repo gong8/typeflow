@@ -1,6 +1,7 @@
 extends Node2D
 
 var keymap : OrderedSet
+var grid_showing: bool = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -14,7 +15,8 @@ func _on_back_pressed():
 func _on_timing_pressed():
 	if Global.screen == "editor":
 		var inst = load("res://scenes/timing_menu.tscn").instantiate()
-		inst.position = Vector2(1920/2, 1080/2)
+#		inst.position = Vector2(1920/2, 1080/2)
+		inst.position = Vector2(160, 160)
 		add_child(inst)
 		Global.screen = "timing"
 
@@ -30,7 +32,13 @@ func _on_file_dialog_file_selected(path):
 
 
 func _on_grid_button_pressed():
-	pass # Replace with function body.
+	if grid_showing:
+		grid_showing = false
+		$Grid.hide()
+	else:
+		grid_showing = true
+		$Grid.show()
+	
 
 var cycle = [1, 2, 3, 4, 6]
 var cycle_pos = 3

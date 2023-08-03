@@ -1,14 +1,63 @@
 [gd_scene load_steps=3 format=3 uid="uid://dsd0c1sgb5k4p"]
 
-[ext_resource type="PackedScene" uid="uid://dcki3xl5ed715" path="res://scenes/timingtimeline.tscn" id="1_248kr"]
+[ext_resource type="Script" path="res://scripts/editor/timing_timeline.gd" id="1_kn6hf"]
 
 [sub_resource type="GDScript" id="GDScript_r0e7i"]
 script/source = "extends Node2D
 
+var song: AudioStreamPlayer = null
+var song_length: float
+var current_time: float
+var was_playing: bool = false
+
+func _process(delta):
+	if song == null:
+		song = get_tree().get_first_node_in_group(\"songs\")
+		if song == null:
+			return
+		song_length = song.stream.get_length()
+		print(song_length)
+		$TimingTimeline.max_value = song_length
+		$TogglePlay.text = \"Play\"
+		song.play()
+		song.set_stream_paused(true)
+		
+	if song.is_playing():
+		$TimingTimeline.value = song.get_playback_position()
+
+func _on_drag_started():
+	was_playing = song.is_playing()
+	song.set_stream_paused(true)
+
+
+func _on_drag_ended():
+	if was_playing:
+		song.play($TimingTimeline.value)
+		$TogglePlay.text = \"Pause\"
+	else:
+		song.play($TimingTimeline.value)
+		song.set_stream_paused(true)
 
 func _on_close_pressed():
 	Global.screen = \"editor\"
 	queue_free()
+
+func _on_toggle_play_pressed():
+	if song.is_playing():
+		song.set_stream_paused(true)
+		$TogglePlay.text = \"Play\"
+	else:
+		song.set_stream_paused(false)
+		$TogglePlay.text = \"Pause\"
+
+
+func _on_add_toothpick_pressed():
+	var toothpick_inst = load(\"res://scenes/toothpick.tscn\").instantiate()
+	add_child(toothpick_inst)
+	toothpick_inst.max_value = $TimingTimeline.max_value
+	toothpick_inst.set_value($TimingTimeline.value)
+	
+	
 "
 
 [node name="TimingMenu" type="Node2D"]
@@ -16,18 +65,35 @@ script = SubResource("GDScript_r0e7i")
 metadata/_edit_horizontal_guides_ = [1612.0]
 
 [node name="BG" type="Polygon2D" parent="."]
-scale = Vector2(0.95, 0.95)
-polygon = PackedVector2Array(-880, -460, 880, -460, 880, 460, -880, 460)
+polygon = PackedVector2Array(2.08165e-12, 2.08165e-12, 1600, 2.08165e-12, 1600, 760, 2.08165e-12, 760)
 metadata/_edit_lock_ = true
 
 [node name="Close" type="Button" parent="."]
-offset_left = -825.0
-offset_top = -430.0
-offset_right = -611.0
-offset_bottom = -310.0
+offset_right = 80.0
+offset_bottom = 80.0
 text = "CLOSE
 "
 
-[node name="TimingTimeline" parent="." instance=ExtResource("1_248kr")]
+[node name="TogglePlay" type="Button" parent="."]
+offset_left = 48.0
+offset_top = 642.0
+offset_right = 128.0
+offset_bottom = 722.0
+text = "pa"
+
+[node name="AddToothpick" type="Button" parent="."]
+offset_left = 50.0
+offset_top = 530.0
+offset_right = 175.0
+offset_bottom = 607.0
+text = "add pick"
+
+[node name="TimingTimeline" type="Node2D" parent="."]
+position = Vector2(180, 640)
+script = ExtResource("1_kn6hf")
 
 [connection signal="pressed" from="Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="TogglePlay" to="." method="_on_toggle_play_pressed"]
+[connection signal="pressed" from="AddToothpick" to="." method="_on_add_toothpick_pressed"]
+[connection signal="drag_ended" from="TimingTimeline" to="." method="_on_drag_ended"]
+[connection signal="drag_started" from="TimingTimeline" to="." method="_on_drag_started"]

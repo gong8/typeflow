@@ -4,3 +4,6 @@ res://scenes/editor.tscn
 res://scenes/timing_menu.tscn
 res://scenes/timeline.tscn
 res://scenes/toothpick.tscn
+res://scripts/editor/editor.gd
+res://scripts/global.gd
+res://scripts/editor/timeline.gd

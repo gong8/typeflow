@@ -7,4 +7,9 @@ res://scenes/timing_timeline.tscn
 res://scenes/timeline.tscn
 res://scenes/toothpick.tscn
 res://scripts/editor/editor.gd
+res://scripts/game.gd
+res://scripts/editor/grid.gd
+res://scripts/map_manager.gd
 res://scripts/editor/timing_menu.gd
+res://scripts/editor/timing_timeline.gd
+res://scripts/editor/toothpick.gd

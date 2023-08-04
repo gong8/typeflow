@@ -20,7 +20,7 @@ func update_properties():
 	Global.root.map_manager.changes[id]["bpm"] = bpm
 	Global.root.map_manager.changes[id]["tracks"] = tracks
 	
-	#print(Global.root.map_manager.changes)
+	print(Global.root.map_manager.changes)
 
 func _on_handle_down():
 	dragging = true

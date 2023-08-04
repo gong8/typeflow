@@ -118,4 +118,11 @@ func _on_track_edit_focus_exited():
 
 
 func _on_jump_to_last_tp_pressed():
-	pass
+	var last_time = Global.root.map_manager.get_last_properties($TimingTimeline.value)["time"]
+	if last_time <= $TimingTimeline.value:
+		$TimingTimeline.value = last_time
+	else:
+		$TimingTimeline.value = 0
+	
+	was_playing = song.is_playing()
+	_on_drag_ended()

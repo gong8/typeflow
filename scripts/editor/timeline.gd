@@ -36,7 +36,6 @@ func _ready():
 	$TogglePlay.text = "Play"
 
 func _process(delta):
-	print(window_x)
 	if song == null:
 		song = get_tree().get_first_node_in_group("songs")
 		if song == null:

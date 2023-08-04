@@ -25,7 +25,7 @@ func get_last_properties(time) -> Dictionary:
 	if closest_index == -1:
 		return {"time" : time, "bpm" : 60, "tracks" : 1}
 	else:
-		return {"time" : time, "bpm" : changes[closest_index]["bpm"], "tracks" : changes[closest_index]["tracks"]}
+		return {"time" : changes[closest_index]["time"], "bpm" : changes[closest_index]["bpm"], "tracks" : changes[closest_index]["tracks"]}
 
 func get_time_sorted_array():
 	var arr = []

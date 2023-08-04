@@ -1,8 +1,12 @@
-res://scenes/menu.tscn
+res://scenes/timing_menu.tscn
 res://scripts/editor/timeline.gd
+res://scripts/editor/timing_menu.gd
+res://scenes/menu.tscn
 res://scenes/game.tscn
 res://scenes/toothpick.tscn
 res://scenes/timing_timeline.tscn
-res://scenes/timing_menu.tscn
 res://scenes/editor.tscn
 res://scenes/timeline.tscn
+res://scripts/editor/timing_timeline.gd
+res://scripts/editor/toothpick.gd
+res://scripts/map_manager.gd

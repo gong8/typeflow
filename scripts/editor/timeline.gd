@@ -97,9 +97,13 @@ func drag_started():
 
 func drag_ended():
 	if was_playing:
+		fraction = window_x_to_fraction(window_x)
+		value = fraction * song_length
 		song.play(value)
 		$TogglePlay.text = "Pause"
 		song.set_stream_paused(false)
 	else:
+		fraction = window_x_to_fraction(window_x)
+		value = fraction * song_length
 		song.play(value)
 		song.set_stream_paused(true)

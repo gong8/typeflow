@@ -9,6 +9,7 @@ func _process(delta):
 	pass
 
 
+
 func _on_back_pressed():
 	Global.screen = "main_menu"
 	get_tree().change_scene_to_file("res://scenes/menu.tscn")
@@ -18,6 +19,7 @@ func _on_timing_pressed():
 	if Global.screen == "editor":
 		$TimingMenu.visible = true
 		Global.screen = "timing"
+		$Timeline/Timeline._on_toggle_play_pressed()
 
 
 func _on_file_dialog_file_selected(path):
@@ -28,6 +30,16 @@ func _on_file_dialog_file_selected(path):
 	music.pitch_scale = 1
 	add_child(music)
 	music.add_to_group("songs")
+
+
+	var timing_music = AudioStreamPlayer.new()
+	var timing_stream = load(path)
+	timing_music.set_stream(timing_stream)
+	timing_music.volume_db = 1
+	timing_music.pitch_scale = 1
+	add_child(timing_music)
+	timing_music.add_to_group("timing_songs")
+	
 
 
 func _on_grid_button_pressed():

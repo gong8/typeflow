@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dsd0c1sgb5k4p"]
+[gd_scene load_steps=3 format=3 uid="uid://dsd0c1sgb5k4p"]
 
 [ext_resource type="Script" path="res://scripts/editor/timing_timeline.gd" id="1_kn6hf"]
 [ext_resource type="Script" path="res://scripts/editor/timing_menu.gd" id="1_u0o15"]
-[ext_resource type="AudioStream" uid="uid://bfho2xrynpvm2" path="res://songs/snap out of it.mp3" id="3_atg3s"]
 
 [node name="TimingMenu" type="Node2D"]
 script = ExtResource("1_u0o15")
@@ -40,6 +39,13 @@ offset_right = 175.0
 offset_bottom = 607.0
 text = "add pick"
 
+[node name="JumpToLastTP" type="Button" parent="."]
+offset_left = 734.0
+offset_top = 535.0
+offset_right = 924.0
+offset_bottom = 602.0
+text = "Jump To Last Pick"
+
 [node name="TimingTimeline" type="Node2D" parent="."]
 position = Vector2(180, 640)
 script = ExtResource("1_kn6hf")
@@ -71,12 +77,10 @@ offset_right = 316.0
 offset_bottom = 607.0
 text = "delete pick"
 
-[node name="TimingMenuMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_atg3s")
-
 [connection signal="pressed" from="Close" to="." method="_on_close_pressed"]
 [connection signal="pressed" from="TogglePlay" to="." method="_on_toggle_play_pressed"]
 [connection signal="pressed" from="AddToothpick" to="." method="_on_add_toothpick_pressed"]
+[connection signal="pressed" from="JumpToLastTP" to="." method="_on_jump_to_last_tp_pressed"]
 [connection signal="drag_ended" from="TimingTimeline" to="." method="_on_drag_ended"]
 [connection signal="drag_started" from="TimingTimeline" to="." method="_on_drag_started"]
 [connection signal="focus_exited" from="SelectedTPMenu/TimeEdit" to="." method="_on_time_edit_focus_exited"]

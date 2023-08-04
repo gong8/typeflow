@@ -8,7 +8,7 @@ var selected_toothpick : Node = null
 
 func _process(delta):
 	if song == null:
-		song = get_tree().get_first_node_in_group("timing_songs")
+		song = get_tree().get_first_node_in_group("songs")
 		if song == null:
 			return
 		song_length = song.stream.get_length()
@@ -17,6 +17,11 @@ func _process(delta):
 		$TogglePlay.text = "Play"
 		song.play()
 		song.set_stream_paused(true)
+	
+	if Global.root.map_manager.changes.size() == 0:
+		$JumpToLastTP.visible = false
+	else:
+		$JumpToLastTP.visible = true
 		
 	if song.is_playing():
 		$TimingTimeline.value = song.get_playback_position()
@@ -56,17 +61,17 @@ func _on_add_toothpick_pressed():
 	var toothpick_inst = load("res://scenes/toothpick.tscn").instantiate()
 	add_child(toothpick_inst)
 	
-	var properties = Global.root.bpm_manager.get_last_properties($TimingTimeline.value)
+	var properties = Global.root.map_manager.get_last_properties($TimingTimeline.value)
 	toothpick_inst.bpm = properties["bpm"]
 	toothpick_inst.tracks = properties["tracks"]
 	
-	if Global.root.bpm_manager.changes.size() == 0:
+	if Global.root.map_manager.changes.size() == 0:
 		toothpick_inst.id = 0
-		Global.root.bpm_manager.changes[0] = {}
+		Global.root.map_manager.changes[0] = {}
 	else:
-		var index = Global.root.bpm_manager.changes.keys()[-1] + 1
+		var index = Global.root.map_manager.changes.keys()[-1] + 1
 		toothpick_inst.id =  index
-		Global.root.bpm_manager.changes[index] = {}
+		Global.root.map_manager.changes[index] = {}
 	
 	toothpick_inst.max_value = $TimingTimeline.max_value
 	toothpick_inst.set_value($TimingTimeline.value)
@@ -76,7 +81,7 @@ func _on_add_toothpick_pressed():
 	update_vals()
 
 func _on_delete_toothpick_pressed():
-	Global.root.bpm_manager.changes.erase(selected_toothpick.id)
+	Global.root.map_manager.changes.erase(selected_toothpick.id)
 	selected_toothpick.queue_free()
 
 func update_vals():
@@ -110,3 +115,7 @@ func _on_track_edit_focus_exited():
 	if selected_toothpick != null:
 		selected_toothpick.update_properties()
 		update_vals()
+
+
+func _on_jump_to_last_tp_pressed():
+	pass

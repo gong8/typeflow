@@ -1,4 +1,4 @@
-class_name BpmManager
+class_name MapManager
 
 var changes : Dictionary = {}
 
@@ -26,3 +26,13 @@ func get_last_properties(time) -> Dictionary:
 		return {"time" : time, "bpm" : 60, "tracks" : 1}
 	else:
 		return {"time" : time, "bpm" : changes[closest_index]["bpm"], "tracks" : changes[closest_index]["tracks"]}
+
+func get_time_sorted_array():
+	var arr = []
+	var time_sorted_keys = changes.keys()
+	time_sorted_keys.sort_custom(func(a,b): return changes[a]["time"] < changes[b]["time"])
+	
+	for k in time_sorted_keys:
+		arr.push_back(changes[k])
+	
+	return arr

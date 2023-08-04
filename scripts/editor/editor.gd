@@ -2,12 +2,12 @@ extends Node2D
 
 var keymap : OrderedSet
 var grid_showing: bool = true
-var bpm_manager = BpmManager.new()
+var map_manager = MapManager.new()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
-
+	if Input.is_action_just_released("Click"):
+		print(get_global_mouse_position().y)
 
 
 func _on_back_pressed():
@@ -19,7 +19,6 @@ func _on_timing_pressed():
 	if Global.screen == "editor":
 		$TimingMenu.visible = true
 		Global.screen = "timing"
-		$Timeline/Timeline._on_toggle_play_pressed()
 
 
 func _on_file_dialog_file_selected(path):
@@ -32,23 +31,11 @@ func _on_file_dialog_file_selected(path):
 	music.add_to_group("songs")
 
 
-	var timing_music = AudioStreamPlayer.new()
-	var timing_stream = load(path)
-	timing_music.set_stream(timing_stream)
-	timing_music.volume_db = 1
-	timing_music.pitch_scale = 1
-	add_child(timing_music)
-	timing_music.add_to_group("timing_songs")
-	
-
-
 func _on_grid_button_pressed():
 	if grid_showing:
 		grid_showing = false
-		$Grid.hide()
 	else:
 		grid_showing = true
-		$Grid.show()
 	
 
 var cycle = [1, 2, 3, 4, 6]

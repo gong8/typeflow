@@ -16,11 +16,11 @@ func set_value(new_value):
 	set_x((value / max_value) * 1200 + 360)
 
 func update_properties():
-	Global.root.bpm_manager.changes[id]["time"] = value
-	Global.root.bpm_manager.changes[id]["bpm"] = bpm
-	Global.root.bpm_manager.changes[id]["tracks"] = tracks
+	Global.root.map_manager.changes[id]["time"] = value
+	Global.root.map_manager.changes[id]["bpm"] = bpm
+	Global.root.map_manager.changes[id]["tracks"] = tracks
 	
-	#print(Global.root.bpm_manager.changes)
+	#print(Global.root.map_manager.changes)
 
 func _on_handle_down():
 	dragging = true

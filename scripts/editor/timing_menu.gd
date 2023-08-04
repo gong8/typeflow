@@ -8,7 +8,7 @@ var selected_toothpick : Node = null
 
 func _process(delta):
 	if song == null:
-		song = get_tree().get_first_node_in_group("songs")
+		song = get_tree().get_first_node_in_group("timing_songs")
 		if song == null:
 			return
 		song_length = song.stream.get_length()
